@@ -1,16 +1,16 @@
+import { relations } from 'drizzle-orm';
 import {
-  serial,
-  pgTable,
   char,
-  timestamp,
-  varchar,
-  text,
   index,
   integer,
-  primaryKey,
+  pgTable,
   PgTimestampConfig,
+  primaryKey,
+  serial,
+  text,
+  timestamp,
+  varchar,
 } from 'drizzle-orm/pg-core';
-import { relations } from 'drizzle-orm';
 
 const timestampz = (name: string, options: PgTimestampConfig = {}) =>
   timestamp(name, { ...options, withTimezone: true });

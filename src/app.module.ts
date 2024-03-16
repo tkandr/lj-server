@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { pgConfig, appConfig } from '@lj/config';
-import { NestDrizzleModule } from './database/drizzle/drizzle.module';
+
+import { appConfig, pgConfig } from '@lj/config';
 import * as schema from '@lj/drizzle/schema';
+
+import { NestDrizzleModule } from './database/drizzle/drizzle.module';
 import { UsersModule } from './modules/users/users.module';
 
 @Module({

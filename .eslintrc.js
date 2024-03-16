@@ -4,12 +4,11 @@ module.exports = {
     project: 'tsconfig.json',
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin', 'drizzle'],
+  plugins: ['@typescript-eslint/eslint-plugin', 'drizzle', 'simple-import-sort'],
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'plugin:drizzle/recommended',
-    "simple-import-sort"
+    'plugin:drizzle/recommended'
   ],
   root: true,
   env: {

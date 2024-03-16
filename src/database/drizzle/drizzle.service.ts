@@ -1,15 +1,17 @@
-import { Inject, Injectable } from '@nestjs/common';
 import {
-  PostgresJsDatabase,
   drizzle as drizzlePgJs,
+  PostgresJsDatabase,
 } from 'drizzle-orm/postgres-js';
-import {
-  NestDrizzleOptions,
-  NEST_DRIZZLE_OPTIONS_TOKEN,
-} from './interfaces/drizzle.interfaces';
-import * as postgres from 'postgres';
 import { migrate as migratePgJs } from 'drizzle-orm/postgres-js/migrator';
+import * as postgres from 'postgres';
+import { Inject, Injectable } from '@nestjs/common';
+
 import { IPgConfig, pgConfig as _pgConfig } from '@lj/config';
+
+import {
+  NEST_DRIZZLE_OPTIONS_TOKEN,
+  NestDrizzleOptions,
+} from './interfaces/drizzle.interfaces';
 
 interface IDrizzleService {
   migrate(): Promise<void>;

@@ -1,15 +1,16 @@
 import { DynamicModule, Global, Module, Provider, Type } from '@nestjs/common';
-import { DrizzleService } from './drizzle.service';
+
+import {
+  NEST_DRIZZLE_OPTIONS_TOKEN,
+  NestDrizzleAsyncOptions,
+  NestDrizzleOptions,
+  NestDrizzleOptionsFactory,
+} from './interfaces/drizzle.interfaces';
 import {
   connectionFactory,
   createNestDrizzleProviders,
 } from './drizzle.provider';
-import {
-  NestDrizzleAsyncOptions,
-  NestDrizzleOptions,
-  NestDrizzleOptionsFactory,
-  NEST_DRIZZLE_OPTIONS_TOKEN,
-} from './interfaces/drizzle.interfaces';
+import { DrizzleService } from './drizzle.service';
 
 @Global()
 @Module({

@@ -1,18 +1,20 @@
 import 'dotenv/config';
+
+import { useContainer } from 'class-validator';
 import {
   ClassSerializerInterceptor,
+  Logger,
   ValidationPipe,
   VersioningType,
-  Logger,
 } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-
 import { NestFactory, Reflector } from '@nestjs/core';
-import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { validationOptions, ResolvePromisesInterceptor } from './utils';
-import { IAppConfig, IAllAppConfig } from '@lj/config';
-import { useContainer } from 'class-validator';
+
+import { IAllAppConfig, IAppConfig } from '@lj/config';
+
+import { AppModule } from './app.module';
+import { ResolvePromisesInterceptor, validationOptions } from './utils';
 
 const docsPath: string = <const>'docs';
 

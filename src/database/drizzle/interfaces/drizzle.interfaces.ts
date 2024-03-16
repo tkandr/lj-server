@@ -1,7 +1,7 @@
-import { ModuleMetadata, Type } from '@nestjs/common';
 import { DrizzleConfig } from 'drizzle-orm';
 import { MigrationConfig } from 'drizzle-orm/migrator';
 import { NodePgDatabase } from 'drizzle-orm/node-postgres';
+import { ModuleMetadata, Type } from '@nestjs/common';
 
 export type PostgresJsDb = NodePgDatabase;
 
@@ -26,4 +26,3 @@ export interface NestDrizzleAsyncOptions
 }
 
 export const NEST_DRIZZLE_OPTIONS_TOKEN = 'NEST_DRIZZLE_OPTIONS_TOKEN';
-export const DRIZZLE_ORM = 'DRIZZLE_ORM';
