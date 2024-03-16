@@ -47,7 +47,7 @@ export const questTasks = pgTable('quest_tasks', {
     .references(() => quests.id),
   title: text('title').notNull(),
   description: text('description').notNull(),
-  reward: integer('reward').notNull(),
+  points: integer('points').notNull(),
   type: varchar('type', {
     enum: ['user_registration', 'avatar_created'],
   }).notNull(),

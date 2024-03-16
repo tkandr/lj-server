@@ -1,1 +1,1 @@
-export const DRIZZLE_ORM_TOKEN = 'DRIZZLE_ORM';
+export const DRIZZLE_ORM_TOKEN = 'DRIZZLE_ORM_TOKEN';

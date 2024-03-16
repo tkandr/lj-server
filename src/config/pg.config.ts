@@ -6,7 +6,7 @@ export interface IPgConfig {
 }
 
 // Hosting by default provides connection string
-// I believe that separate env vars are mov
+// I believe that separate env vars are more convenient for the local development
 
 let connectionString;
 if (process.env.PG_CONNECTION_STRING) {

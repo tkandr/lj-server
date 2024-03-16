@@ -1,0 +1,1 @@
+ALTER TABLE "quest_tasks" RENAME COLUMN "reward" TO "points";

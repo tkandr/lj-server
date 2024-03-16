@@ -25,14 +25,14 @@ const main = async () => {
       questId: aliceQuest.id,
       title: 'Register',
       description: 'Register to the game',
-      reward: 10,
+      points: 10,
       type: 'user_registration',
     },
     {
       questId: aliceQuest.id,
       title: 'Create avatar',
       description: 'Create an avatar',
-      reward: 20,
+      points: 20,
       type: 'avatar_created',
     },
   ]);

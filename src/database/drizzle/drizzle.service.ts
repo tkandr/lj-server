@@ -20,7 +20,7 @@ interface IDrizzleService {
 
 @Injectable()
 export class DrizzleService implements IDrizzleService {
-  private _drizzle: PostgresJsDatabase<Record<string, unknown>>;
+  private drizzle: PostgresJsDatabase<Record<string, unknown>>;
   constructor(
     @Inject(_pgConfig.KEY)
     private readonly pgConfig: IPgConfig,
@@ -39,10 +39,10 @@ export class DrizzleService implements IDrizzleService {
   }
   async getDrizzle() {
     let client: postgres.Sql<Record<string, never>>;
-    if (!this._drizzle) {
+    if (!this.drizzle) {
       client = postgres(this.pgConfig.connectionString);
-      this._drizzle = drizzlePgJs(client, this.nestDrizzleOptions.options);
+      this.drizzle = drizzlePgJs(client, this.nestDrizzleOptions.options);
     }
-    return this._drizzle;
+    return this.drizzle;
   }
 }
