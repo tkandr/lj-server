@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "dtos",
     "timestampz"
   ],
   "typescript.tsdk": "node_modules/typescript/lib"
