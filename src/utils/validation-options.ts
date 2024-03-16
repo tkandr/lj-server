@@ -20,7 +20,7 @@ function generateErrors(errors: ValidationError[]): Record<string, any> {
 
 export const validationOptions: ValidationPipeOptions = {
   transform: true,
-  whitelist: true,
+  whitelist: false,
   errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
   exceptionFactory: (errors: ValidationError[]) => {
     return new HttpException(
