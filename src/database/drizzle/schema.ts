@@ -127,6 +127,10 @@ export const userToQuestTasksRelations = relations(
   }),
 );
 
+// ==== Typings ====
 export type User = typeof users.$inferSelect;
 export type Quest = typeof quests.$inferSelect;
 export type QuestTask = typeof questTasks.$inferSelect;
+export type NewUser = typeof users.$inferInsert;
+export type NewQuest = typeof quests.$inferInsert;
+export type NewQuestTask = typeof questTasks.$inferInsert;
