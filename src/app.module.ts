@@ -5,7 +5,9 @@ import { appConfig, pgConfig } from '@lj/config';
 import * as schema from '@lj/drizzle/schema';
 
 import { NestDrizzleModule } from './database/drizzle/drizzle.module';
+import { QuestsModule } from './modules/quests/quests.module';
 import { UsersModule } from './modules/users/users.module';
+import { SharedModule } from './shared/shared.module';
 
 @Module({
   imports: [
@@ -26,6 +28,8 @@ import { UsersModule } from './modules/users/users.module';
       },
     }),
     UsersModule,
+    QuestsModule,
+    SharedModule,
   ],
 })
 export class AppModule {}

@@ -1,9 +1,7 @@
+import { AbstractDto } from 'src/common/dto/abstract.dto';
 import { ApiResponseProperty } from '@nestjs/swagger';
 
-export class FullUserResponseDto {
-  @ApiResponseProperty()
-  id: number;
-
+export class FullUserResponseDto extends AbstractDto {
   @ApiResponseProperty()
   walletAddress: string;
 

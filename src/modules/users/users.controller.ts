@@ -25,6 +25,7 @@ export class UsersController {
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: FullUserResponseDto })
   async getFullUser(
+    // todo: add validation for wallet address
     @Param('walletAddress') walletAddress: string,
   ): Promise<FullUserResponseDto> {
     const user = await this.usersService.getFullUser(walletAddress);
