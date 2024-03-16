@@ -1,7 +1,6 @@
 import { relations } from 'drizzle-orm';
 import {
   char,
-  index,
   integer,
   pgTable,
   PgTimestampConfig,
@@ -9,11 +8,12 @@ import {
   serial,
   text,
   timestamp,
+  uniqueIndex,
   varchar,
 } from 'drizzle-orm/pg-core';
 
 const timestampz = (name: string, options: PgTimestampConfig = {}) =>
-  timestamp(name, { ...options, withTimezone: true });
+  timestamp(name, { withTimezone: true, mode: 'date', ...options });
 
 const timestampzDefaultNow = (name: string, options: PgTimestampConfig = {}) =>
   timestampz(name, options).defaultNow().notNull();
@@ -28,7 +28,7 @@ export const users = pgTable(
     address: char('address', { length: 42 }).notNull(),
   },
   (table) => ({
-    addressIdx: index('address_idx').on(table.address),
+    addressIdx: uniqueIndex('address_idx').on(table.address),
   }),
 );
 
@@ -128,9 +128,9 @@ export const userToQuestTasksRelations = relations(
 );
 
 // ==== Typings ====
-export type User = typeof users.$inferSelect;
-export type Quest = typeof quests.$inferSelect;
-export type QuestTask = typeof questTasks.$inferSelect;
-export type NewUser = typeof users.$inferInsert;
-export type NewQuest = typeof quests.$inferInsert;
-export type NewQuestTask = typeof questTasks.$inferInsert;
+export type IUser = typeof users.$inferSelect;
+export type IQuest = typeof quests.$inferSelect;
+export type IQuestTask = typeof questTasks.$inferSelect;
+export type INewUser = typeof users.$inferInsert;
+export type INewQuest = typeof quests.$inferInsert;
+export type INewQuestTask = typeof questTasks.$inferInsert;
