@@ -42,6 +42,16 @@ export class UsersService {
         ),
       );
 
+    const completedTasks = await this.db
+      .select({ id: schema.userToQuestTasks.questTaskId })
+      .from(schema.userToQuestTasks)
+      .where(
+        and(
+          eq(schema.userToQuestTasks.userId, user.id),
+          isNotNull(schema.userToQuestTasks.completedAt),
+        ),
+      );
+
     const [{ points }] = await this.db
       .select({
         points: sql<number>`cast(count(${schema.questTasks.points}) as int)`,
@@ -56,6 +66,7 @@ export class UsersService {
       id: user.id,
       walletAddress: user.address,
       completedQuestIDs: completedQuests.map((quest) => quest.id),
+      completedTasksIDs: completedTasks.map((task) => task.id),
       points,
     };
   }
