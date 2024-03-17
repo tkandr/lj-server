@@ -1,7 +1,7 @@
 import { and, eq, isNotNull, sql } from 'drizzle-orm';
 import { PostgresJsDatabase } from 'drizzle-orm/postgres-js';
 import { DRIZZLE_ORM_TOKEN } from 'src/constants';
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 
 import * as schema from '@lj/drizzle/schema';
 
@@ -31,6 +31,10 @@ export class UsersService {
       .select()
       .from(schema.users)
       .where(eq(schema.users.address, address));
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
 
     const completedQuests = await this.db
       .select({ id: schema.userToQuests.questId })
