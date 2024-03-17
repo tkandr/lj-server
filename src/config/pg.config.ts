@@ -9,8 +9,8 @@ export interface IPgConfig {
 // I believe that separate env vars are more convenient for the local development
 
 let connectionString;
-if (process.env.DATABASE_URL) {
-  connectionString = process.env.DATABASE_URL + '?ssl=true';
+if (process.env.HEROKU_POSTGRESQL_PINK_URL) {
+  connectionString = process.env.HEROKU_POSTGRESQL_PINK_URL + '?ssl=true';
   console.log('connected production');
 } else {
   const conf = {
