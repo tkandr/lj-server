@@ -12,4 +12,9 @@ export class FullUserResponseDto extends AbstractDto {
 
   @ApiResponseProperty()
   points: number;
+
+  @ApiResponseProperty({
+    type: [Number],
+  })
+  completedTasksIDs: number[];
 }

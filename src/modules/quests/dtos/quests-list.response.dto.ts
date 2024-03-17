@@ -1,12 +1,13 @@
-import { Type } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 import { IsArray } from 'class-validator';
 import { ApiResponseProperty } from '@nestjs/swagger';
 
-import { QuestEntityDto } from './entities/quest.entity.dto';
+import { QuestFullResponseDto } from './quest-full.response.dto';
 
 export class QuestsListResponseDto {
-  @ApiResponseProperty({ type: [QuestEntityDto] })
+  @ApiResponseProperty({ type: [QuestFullResponseDto] })
   @IsArray()
-  @Type(() => QuestEntityDto)
-  quests?: QuestEntityDto[];
+  @Type(() => QuestFullResponseDto)
+  @Expose()
+  quests?: QuestFullResponseDto[];
 }

@@ -3,9 +3,9 @@ import { AbstractDto } from 'src/common/dto/abstract.dto';
 import { ApiResponseProperty } from '@nestjs/swagger';
 
 export class QuestEntityDto extends AbstractDto {
-  @ApiResponseProperty()
+  @ApiResponseProperty({ type: String })
   @Expose()
-  createdAt: string;
+  createdAt: Date;
 
   @ApiResponseProperty()
   @Expose()
@@ -13,7 +13,7 @@ export class QuestEntityDto extends AbstractDto {
 
   @ApiResponseProperty()
   @Expose()
-  description: number;
+  description: string;
 
   @ApiResponseProperty()
   @Expose()

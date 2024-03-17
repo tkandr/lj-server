@@ -9,9 +9,9 @@ export class QuestTaskEntityDto extends AbstractDto {
 
   @ApiResponseProperty()
   @Expose()
-  description: number;
+  description: string;
 
   @ApiResponseProperty()
   @Expose()
-  points: string;
+  points: number;
 }
