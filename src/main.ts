@@ -28,6 +28,10 @@ async function bootstrap() {
       : { cors: { origin: '*', credentials: true } }),
   });
 
+  app.enableCors({
+    origin: ['https://alexander-kharytonov.github.io', 'http://localhost:3000'],
+  });
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   const configService = app.get(ConfigService<IAllAppConfig>);
