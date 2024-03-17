@@ -73,16 +73,22 @@ export const userToQuests = pgTable(
   }),
 );
 
-export const userToQuestTasks = pgTable('user_to_quest_tasks', {
-  userId: integer('user_id')
-    .notNull()
-    .references(() => users.id),
-  questTaskId: integer('quest_task_id')
-    .notNull()
-    .references(() => questTasks.id),
-  startedAt: timestampz('started_at'),
-  completedAt: timestampz('completed_at'),
-});
+export const userToQuestTasks = pgTable(
+  'user_to_quest_tasks',
+  {
+    userId: integer('user_id')
+      .notNull()
+      .references(() => users.id),
+    questTaskId: integer('quest_task_id')
+      .notNull()
+      .references(() => questTasks.id),
+    startedAt: timestampzDefaultNow('started_at'),
+    completedAt: timestampz('completed_at'),
+  },
+  (table) => ({
+    pk: primaryKey({ columns: [table.userId, table.questTaskId] }),
+  }),
+);
 
 // ==== Relations ====
 export const questsRelations = relations(quests, ({ many }) => ({

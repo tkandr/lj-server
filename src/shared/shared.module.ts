@@ -1,4 +1,11 @@
-import { Module } from '@nestjs/common';
+import { Global, Module, Provider } from '@nestjs/common';
 
-@Module({})
+import { postChainProvider } from './services/post-chain/post-chain.provider';
+
+const providers: Provider[] = [postChainProvider];
+@Global()
+@Module({
+  providers,
+  exports: providers,
+})
 export class SharedModule {}

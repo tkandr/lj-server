@@ -22,6 +22,20 @@
       "when": 1710603684560,
       "tag": "0002_chubby_triton",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "5",
+      "when": 1710626021539,
+      "tag": "0003_wandering_exodus",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "5",
+      "when": 1710628222881,
+      "tag": "0004_rich_timeslip",
+      "breakpoints": true
     }
   ]
 }
