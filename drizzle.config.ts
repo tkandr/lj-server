@@ -10,6 +10,9 @@ const config = {
   driver: 'pg',
   dbCredentials: {
     connectionString: pgConfigObj.connectionString,
+    ssl: {
+      rejectUnauthorized: false
+    }    
   },
 } satisfies Config;
 
