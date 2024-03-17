@@ -9,10 +9,7 @@ const config = {
   out: './src/database/drizzle/migrations',
   driver: 'pg',
   dbCredentials: {
-    connectionString: pgConfigObj.connectionString,
-    ssl: {
-      rejectUnauthorized: false
-    }    
+    connectionString: pgConfigObj.connectionString,  
   },
 } satisfies Config;
 
