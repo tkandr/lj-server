@@ -1,0 +1,1 @@
+web: ls -l && nom run build && ls -l dist && rpm run start:prod

@@ -11,6 +11,7 @@ export interface IPgConfig {
 let connectionString;
 if (process.env.DATABASE_URL) {
   connectionString = process.env.DATABASE_URL;
+  console.log('connected production');
 } else {
   const conf = {
     host: get('PG_HOST').required().asString(),
@@ -21,6 +22,7 @@ if (process.env.DATABASE_URL) {
     logging: get('PG_LOGGING').default('false').asBoolStrict(),
   };
   connectionString = `postgres://${conf.username}:${conf.password}@${conf.host}:${conf.port}/${conf.database}`;
+  console.log('connected somehow')
 }
 export const pgConfigObj: IPgConfig = {
   connectionString,
