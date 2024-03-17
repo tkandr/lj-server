@@ -1,1 +1,1 @@
-web: npm build && npm run start:her
+web: npm run start:her

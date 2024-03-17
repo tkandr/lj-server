@@ -67,7 +67,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup(docsPath, app, document);
 
-  await app.listen(appConfig.port || 3000, appConfig.host);
+  await app.listen(process.env.PORT || 3000);
 
   const url: string = await app.getUrl();
   const logger: Logger = new Logger(`Bootstrap`);
