@@ -9,8 +9,8 @@ export interface IPgConfig {
 // I believe that separate env vars are more convenient for the local development
 
 let connectionString;
-if (process.env.PG_CONNECTION_STRING) {
-  connectionString = process.env.PG_CONNECTION_STRING;
+if (process.env.DATABASE_URL) {
+  connectionString = process.env.DATABASE_URL;
 } else {
   const conf = {
     host: get('PG_HOST').required().asString(),
