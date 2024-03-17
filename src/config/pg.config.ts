@@ -10,7 +10,7 @@ export interface IPgConfig {
 
 let connectionString;
 if (process.env.DATABASE_URL) {
-  connectionString = process.env.DATABASE_URL;
+  connectionString = process.env.DATABASE_URL + '?ssl=true';
   console.log('connected production');
 } else {
   const conf = {
