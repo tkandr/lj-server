@@ -1,1 +1,1 @@
-web: ls -l && npm run build && ls -l dist && npm run start:her
+web: npm run start:her
