@@ -1,24 +1,26 @@
-import { ethers, solidityPackedKeccak256 } from 'ethers';
+import { ethers } from 'ethers';
 import { Inject, Injectable } from '@nestjs/common';
 
 import { ISbtConfig, sbtConfig as _sbtConfig } from '@lj/config';
 
 @Injectable()
 export class SbtService {
+  private readonly signer: ethers.Wallet = new ethers.Wallet(
+    this.sbtConfig.signerPrivateKey,
+  );
   constructor(@Inject(_sbtConfig.KEY) private readonly sbtConfig: ISbtConfig) {}
 
   public async getSingerMessage(address) {
     const now = new Date().getTime();
     const message = `verify ${now}`;
-    const messageHash = solidityPackedKeccak256(
+    const messageHash = ethers.solidityPackedKeccak256(
       ['string', 'address'],
       [message, address],
     );
+    const signature = await this.signer.signMessage(
+      ethers.getBytes(messageHash),
+    );
 
-    return messageHash;
-  }
-
-  private getSigner(): ethers.Wallet {
-    return new ethers.Wallet(this.sbtConfig.signerPrivateKey);
+    return signature;
   }
 }
