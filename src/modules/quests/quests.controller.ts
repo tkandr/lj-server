@@ -29,10 +29,16 @@ export class QuestsController {
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: QuestsListResponseDto })
   async getQuests(): Promise<QuestsListResponseDto> {
-    const quests = await this.questsService.getQuests();
+    const quests = await this.questsService.getFullQuestList();
 
     // @todo: pagination must be added here
-    return plainToInstance(QuestsListResponseDto, { quests });
+    return plainToInstance(
+      QuestsListResponseDto,
+      { quests },
+      {
+        excludeExtraneousValues: true,
+      },
+    );
   }
 
   @Get('/:questId')

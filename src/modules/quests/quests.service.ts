@@ -12,6 +12,8 @@ import {
 
 import * as schema from '@lj/drizzle/schema';
 
+import { QuestFullResponseDto } from './dtos/quest-full.response.dto';
+
 @Injectable()
 export class QuestsService {
   private readonly logger = new Logger(QuestsService.name);
@@ -26,7 +28,15 @@ export class QuestsService {
     return this.db.select().from(schema.quests);
   }
 
-  async getFullQuest(questId: number) {
+  async getFullQuestList(): Promise<QuestFullResponseDto[]> {
+    return this.db.query.quests.findMany({
+      with: {
+        tasks: true,
+      },
+    });
+  }
+
+  async getFullQuest(questId: number): Promise<QuestFullResponseDto> {
     return this.db.query.quests.findFirst({
       with: {
         tasks: true,
