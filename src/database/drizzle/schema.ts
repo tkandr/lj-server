@@ -1,6 +1,6 @@
 import { relations } from 'drizzle-orm';
 import {
-  char,
+  customType,
   integer,
   pgTable,
   PgTimestampConfig,
@@ -12,11 +12,22 @@ import {
   varchar,
 } from 'drizzle-orm/pg-core';
 
+// ==== Custom types ====
 const timestampz = (name: string, options: PgTimestampConfig = {}) =>
   timestamp(name, { withTimezone: true, mode: 'date', ...options });
 
 const timestampzDefaultNow = (name: string, options: PgTimestampConfig = {}) =>
   timestampz(name, options).defaultNow().notNull();
+
+const walletAddress = customType<{ data: string }>({
+  dataType() {
+    // for now we support only EVM addresses
+    return 'char(42)';
+  },
+  toDriver(value: string): string {
+    return value.toLowerCase();
+  },
+});
 
 // ==== Tables ====
 export const users = pgTable(
@@ -25,7 +36,7 @@ export const users = pgTable(
     id: serial('id').primaryKey(), // wallet address can be used as primary key, but unsorted keys are bed for performance
     createdAt: timestampzDefaultNow('created_at'),
     lastLogin: timestampz('last_login'),
-    address: char('address', { length: 42 }).notNull(),
+    address: walletAddress('address').notNull(),
   },
   (table) => ({
     addressIdx: uniqueIndex('address_idx').on(table.address),
