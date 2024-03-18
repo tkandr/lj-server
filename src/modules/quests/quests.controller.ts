@@ -14,6 +14,8 @@ import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
 import { CheckTaskRequestDto } from './dtos/check-task.request.dto';
 import { CheckTaskResponseDto } from './dtos/check-task.response.dto';
+import { MintNftRequestDto } from './dtos/mint-nft.request.dto';
+import { MintNftResponseDto } from './dtos/mint-nft.response.dto';
 import { QuestFullResponseDto } from './dtos/quest-full.response.dto';
 import { QuestsListResponseDto } from './dtos/quests-list.response.dto';
 import { QuestsService } from './quests.service';
@@ -62,11 +64,23 @@ export class QuestsController {
   @HttpCode(HttpStatus.OK)
   @ApiOkResponse({ type: CheckTaskResponseDto })
   async checkTask(@Body() payload: CheckTaskRequestDto) {
-    const taskCompleted = await this.questsService.updateTaskStatus(
+    const taskCompleted = await this.questsService.tryCompleteTask(
       payload.taskId,
       payload.userId,
     );
 
     return { taskCompleted };
+  }
+
+  @Post('/mint-nft')
+  @HttpCode(HttpStatus.OK)
+  @ApiOkResponse({ type: MintNftResponseDto })
+  async mintNft(
+    @Body() payload: MintNftRequestDto,
+  ): Promise<MintNftResponseDto> {
+    return await this.questsService.getDataForNftMint(
+      payload.userId,
+      payload.questId,
+    );
   }
 }

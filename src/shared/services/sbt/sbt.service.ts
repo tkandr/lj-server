@@ -10,7 +10,11 @@ export class SbtService {
   );
   constructor(@Inject(_sbtConfig.KEY) private readonly sbtConfig: ISbtConfig) {}
 
-  public async getSingerMessage(address) {
+  public async getSingerMessage(address): Promise<{
+    message: string;
+    signature: string;
+    contractAddress: string;
+  }> {
     const now = new Date().getTime();
     const message = `verify ${now}`;
     const messageHash = ethers.solidityPackedKeccak256(
@@ -21,6 +25,10 @@ export class SbtService {
       ethers.getBytes(messageHash),
     );
 
-    return signature;
+    return {
+      signature,
+      message,
+      contractAddress: this.sbtConfig.contractAddress,
+    };
   }
 }

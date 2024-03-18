@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 
-import { appConfig, pgConfig } from '@lj/config';
+import { appConfig, pgConfig, sbtConfig } from '@lj/config';
 import * as schema from '@lj/drizzle/schema';
 
 import { NestDrizzleModule } from './database/drizzle/drizzle.module';
@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
-      load: [appConfig, pgConfig],
+      load: [appConfig, pgConfig, sbtConfig],
     }),
     NestDrizzleModule.forRootAsync({
       useFactory: () => {
