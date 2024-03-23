@@ -2,9 +2,9 @@
   "name": "lj-backend",
   "version": "0.0.1",
   "engines": {
-    "node": "~20.11.1",
-    "npm": "~8.7.0",
-    "yarn": "~1.22.19"
+    "node": ">=20.9.0 < 21.0.0",
+    "npm": "^8.7.0",
+    "yarn": "^1.22.19"
   },
   "description": "",
   "author": "",
