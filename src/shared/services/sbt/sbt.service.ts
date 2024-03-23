@@ -5,10 +5,11 @@ import { ISbtConfig, sbtConfig as _sbtConfig } from '@lj/config';
 
 @Injectable()
 export class SbtService {
-  private readonly signer: ethers.Wallet = new ethers.Wallet(
-    this.sbtConfig.signerPrivateKey,
-  );
-  constructor(@Inject(_sbtConfig.KEY) private readonly sbtConfig: ISbtConfig) {}
+  private readonly signer: ethers.Wallet;
+
+  constructor(@Inject(_sbtConfig.KEY) private readonly sbtConfig: ISbtConfig) {
+    this.signer = new ethers.Wallet(this.sbtConfig.signerPrivateKey);
+  }
 
   public async getSingerMessage(address): Promise<{
     message: string;
